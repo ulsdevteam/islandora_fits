@@ -63,7 +63,7 @@ function drush_islandora_fits_create_techmd($pid) {
 
   module_load_include('inc', 'islandora_paged_content', 'includes/utilities');
   module_load_include('inc', 'islandora_fits', 'includes/batch');
-  module_load_include('inc', 'islandora_paged_content', 'includes/helpers');
+  module_load_include('inc', 'islandora_upitt', 'includes/drush_helpers');
   $time_start = microtime_float();
 
   $islandora_object = islandora_object_load($pid);
