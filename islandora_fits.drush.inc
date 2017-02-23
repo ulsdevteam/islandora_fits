@@ -124,6 +124,11 @@ function drush_islandora_fits_create_techmd($pid) {
  *   The options for tesseract/gimp.
  */
 function drush_islandora_fits_create_techmd_byfile() {
+  if (module_exists('islandora_upitt')) {
+    module_load_include('inc', 'islandora_upitt', 'includes/drush_helpers');
+    islandora_upitt_exit_if_running('drush_fitsctf');
+  }
+
   $batch =& batch_get();
 
   module_load_include('inc', 'islandora_paged_content', 'includes/utilities');
@@ -132,9 +137,6 @@ function drush_islandora_fits_create_techmd_byfile() {
 
   $processed_pids_file = drush_get_option('processed_pids_file', '');
   $process_pids_file = drush_get_option('process_pids_file', '');
-
-error_log($process_pids_file);
-error_log($processed_pids_file);
 
   if ($process_pids_file && $processed_pids_file && file_exists($process_pids_file)) {
     $file = file($process_pids_file);
